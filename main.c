@@ -10,12 +10,12 @@ int main(void) {
 	initTimerA();
 
 	  while (1) {
-		  RobotMovement(FORWARD);
-		  RobotMovement(REVERSE);
-		  RobotMovement(LEFT);
-		  RobotMovement(SHARPLEFT);
+//		  RobotMovement(FORWARD);
+//		  RobotMovement(REVERSE);
+//		  RobotMovement(LEFT);
+//		  RobotMovement(SHARPLEFT);
 		  RobotMovement(RIGHT);
-		  RobotMovement(SHARPRIGHT);
+//		  RobotMovement(SHARPRIGHT);
 	      }
 
 }

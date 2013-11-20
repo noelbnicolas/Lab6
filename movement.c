@@ -72,11 +72,14 @@ void RobotMovement(unsigned char direction)
 			__delay_cycles(10000);
 
 
-
+			TA0CCTL0 &= ~OUTMOD_5;
         	TA0CCTL0 |= OUTMOD_5;
+        	TA0CCTL1 &= ~OUTMOD_7;
         	TA0CCTL1 |= OUTMOD_7;        // set TACCTL1 to Reset / Set mode
 
+        	TA1CCTL0 &= ~OUTMOD_5;
         	TA1CCTL0 |= OUTMOD_5;
+        	TA1CCTL1 &= ~OUTMOD_7;
         	TA1CCTL1 |= OUTMOD_7;
 
         	TA1CCR1 = 0;
@@ -90,11 +93,14 @@ void RobotMovement(unsigned char direction)
  			TA0CCR1 = 0;
  			__delay_cycles(10000);
 
-
+ 			TA0CCTL0 &= ~OUTMOD_5;
          	TA0CCTL0 |= OUTMOD_5;
+         	TA0CCTL1 &= ~OUTMOD_7;
          	TA0CCTL1 |= OUTMOD_7;        // set TACCTL1 to Reset / Set mode
 
+         	TA1CCTL0 &= ~OUTMOD_7;
          	TA1CCTL0 |= OUTMOD_7;
+         	TA1CCTL1 &= ~OUTMOD_5;
          	TA1CCTL1 |= OUTMOD_5;
 
          	TA0CCR1 = 60;
@@ -109,10 +115,14 @@ void RobotMovement(unsigned char direction)
  			__delay_cycles(10000);
 
 
+ 			TA0CCTL0 &= ~OUTMOD_5;
 			TA0CCTL0 |= OUTMOD_5;
+			TA0CCTL1 &= ~OUTMOD_7;
 			TA0CCTL1 |= OUTMOD_7;        // set TACCTL1 to Reset / Set mode
 
+			TA1CCTL0 &= ~OUTMOD_5;
 			TA1CCTL0 |= OUTMOD_5;
+			TA1CCTL1 &= ~OUTMOD_7;
 			TA1CCTL1 |= OUTMOD_7;
 
         	 TA0CCR1 = 0;
@@ -126,11 +136,14 @@ void RobotMovement(unsigned char direction)
 			__delay_cycles(10000);
 
 
-
+			TA0CCTL0 &= ~OUTMOD_7;
          	TA0CCTL0 |= OUTMOD_7;
+         	TA0CCTL1 &= ~OUTMOD_5;
          	TA0CCTL1 |= OUTMOD_5;        // set TACCTL1 to Reset / Set mode
 
+         	TA1CCTL0 &= ~OUTMOD_5;
          	TA1CCTL0 |= OUTMOD_5;
+         	TA1CCTL1 &= ~OUTMOD_7;
          	TA1CCTL1 |= OUTMOD_7;
 
          	TA0CCR1 = 60;
@@ -144,11 +157,14 @@ void RobotMovement(unsigned char direction)
 			TA0CCR1 = 0;
 			__delay_cycles(10000);
 
-
+			TA0CCTL0 &= ~OUTMOD_5;
         	TA0CCTL0 |= OUTMOD_5;
+        	TA0CCTL1 &= ~OUTMOD_7;
         	TA0CCTL1 |= OUTMOD_7;        // set TACCTL1 to Reset / Set mode
 
+        	TA1CCTL0 &= ~OUTMOD_5;
         	TA1CCTL0 |= OUTMOD_5;
+        	TA1CCTL1 &= ~OUTMOD_7;
         	TA1CCTL1 |= OUTMOD_7;
 
         	TA1CCR1 = 60;
@@ -162,11 +178,14 @@ void RobotMovement(unsigned char direction)
 			TA0CCR1 = 0;
 			__delay_cycles(10000);
 
-
+			TA0CCTL0 &= ~OUTMOD_7;
         	TA0CCTL0 |= OUTMOD_7;
+        	TA0CCTL1 &= ~OUTMOD_7;
         	TA0CCTL1 |= OUTMOD_5;
 
+        	TA1CCTL0 &= ~OUTMOD_7;
         	TA1CCTL0 |= OUTMOD_7;
+        	TA1CCTL1 &= ~OUTMOD_7;
         	TA1CCTL1 |= OUTMOD_5;
 
         	TA1CCR1 = 50;
