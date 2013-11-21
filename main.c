@@ -7,29 +7,28 @@
 
 
 int main(void) {
+	WDTCTL = WDTPW|WDTHOLD;
+
 	initTimer();
 
-	  while (1) {
-		  RobotMovement(FORWARD);
-		  Stop();
-		  RobotMovement(REVERSE);
-		  Stop();
-		  RobotMovement(LEFT);
-		  Stop();
-		  RobotMovement(FORWARD);
-		  Stop();
-		  RobotMovement(SHARPLEFT);
-		  Stop();
-		  RobotMovement(FORWARD);
-		  Stop();
-		  RobotMovement(RIGHT);
-		  Stop();
-		  RobotMovement(FORWARD);
-		  Stop();
-		  RobotMovement(SHARPRIGHT);
-		  Stop();
-		  RobotMovement(FORWARD);
-		  Stop();
-	      }
+	while(1) {
+	  RobotMovement(FORWARD);
+	  _delay_cycles(1000000);
+	  Stop();
+	  _delay_cycles(1000000);
+	  RobotMovement(REVERSE);
+	  _delay_cycles(1000000);
+	  Stop();
+	  _delay_cycles(1000000);
+	  RobotMovement(LEFT);
+	  _delay_cycles(1000000);
+	  Stop();
+	  _delay_cycles(1000000);
+	  RobotMovement(RIGHT);
+	  _delay_cycles(1000000);
+	  Stop();
+	  _delay_cycles(1000000);
+	}
 
+	return 0 ;
 }
