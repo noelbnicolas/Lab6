@@ -36,10 +36,10 @@ void initTimer(){
 	TA1CTL |= TASSEL1;           // configure for SMCLK
 
 	TA0CCR0 = 100;				// set signal period to 100 clock cycles (~100 microseconds)
-	TA0CCR1 = 60;				// set duty cycle to 60/100 (60%)
+	TA0CCR1 = 60;				// set duty cycle to 75/100 (75%)
 
 	TA1CCR0 = 100;				// set signal period to 100 clock cycles (~100 microseconds)
-	TA1CCR1 = 60;				// set duty cycle to 60/100 (60%)
+	TA1CCR1 = 60;				// set duty cycle to 75/100 (75%)
 
 
 	TA0CCTL0 |= OUTMOD_5;
@@ -60,97 +60,116 @@ void RobotMovement(unsigned char direction)
         case LEFT:
 
  			TA0CCTL0 &= ~(OUTMOD_7);
-          	TA0CCTL1 &= ~(OUTMOD_7);
-          	TA1CCTL0 &= ~(OUTMOD_7);
-          	TA1CCTL1 &= ~(OUTMOD_7);
-
-
- 		   	TA0CCTL0 |= OUTMOD_5;
+         	TA0CCTL0 |= OUTMOD_5;
+         	TA0CCTL1 &= ~(OUTMOD_7);
          	TA0CCTL1 |= OUTMOD_7;        // set TACCTL1 to Reset / Set mode
+
+         	TA1CCTL0 &= ~(OUTMOD_7);
          	TA1CCTL0 |= OUTMOD_7;
+         	TA1CCTL1 &= ~(OUTMOD_7);
          	TA1CCTL1 |= OUTMOD_5;
+
+         	__delay_cycles(250000);
 
 		 break;
 
-//         case SHARPLEFT:
-//
-//
-// 			TA0CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
-//         	TA0CCTL0 |= OUTMOD_5;
-//         	TA0CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
-//         	TA0CCTL1 |= OUTMOD_7;
-//
-//         	TA1CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
-//         	TA1CCTL0 |= OUTMOD_7;
-//         	TA1CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
-//         	TA1CCTL1 |= OUTMOD_5;
-//
-//
-//       	 break;
+         case SHARPLEFT:
+
+ 			TA0CCTL0 &= ~(OUTMOD_7);
+         	TA0CCTL0 |= OUTMOD_5;
+         	TA0CCTL1 &= ~(OUTMOD_7);
+         	TA0CCTL1 |= OUTMOD_7;
+
+         	TA1CCTL0 &= ~(OUTMOD_7);
+         	TA1CCTL0 |= OUTMOD_7;
+         	TA1CCTL1 &= ~(OUTMOD_7);
+         	TA1CCTL1 |= OUTMOD_5;
+
+         	__delay_cycles(100000);
+
+       	 break;
 
          case RIGHT:
 
  			TA0CCTL0 &= ~(OUTMOD_7);
-          	TA0CCTL1 &= ~(OUTMOD_7);
-          	TA1CCTL0 &= ~(OUTMOD_7);
-          	TA1CCTL1 &= ~(OUTMOD_7);
-
           	TA0CCTL0 |= OUTMOD_7;
+          	TA0CCTL1 &= ~(OUTMOD_7);
           	TA0CCTL1 |= OUTMOD_5;
-          	TA1CCTL0 |= OUTMOD_7;
-          	TA1CCTL1 |= OUTMOD_5;
 
+          	TA1CCTL0 &= ~(OUTMOD_7);
+          	TA1CCTL0 |= OUTMOD_5;
+          	TA1CCTL1 &= ~(OUTMOD_7);
+          	TA1CCTL1 |= OUTMOD_7;
 
-
+          	__delay_cycles(250000);
 
 		break;
+        case SHARPRIGHT:
 
-//        case SHARPRIGHT:
-//
-//			TA0CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
-//         	TA0CCTL0 |= OUTMOD_7;
-//         	TA0CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
-//         	TA0CCTL1 |= OUTMOD_5;
-//
-//         	TA1CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
-//         	TA1CCTL0 |= OUTMOD_5;
-//         	TA1CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
-//         	TA1CCTL1 |= OUTMOD_7;
-//
-//
-//
-//       	break;
+			TA0CCTL0 &= ~(OUTMOD_7);
+         	TA0CCTL0 |= OUTMOD_7;
+         	TA0CCTL1 &= ~(OUTMOD_7);
+         	TA0CCTL1 |= OUTMOD_5;
+
+         	TA1CCTL0 &= ~(OUTMOD_7);
+         	TA1CCTL0 |= OUTMOD_5;
+         	TA1CCTL1 &= ~(OUTMOD_7);
+         	TA1CCTL1 |= OUTMOD_7;
+
+         	__delay_cycles(100000);
+
+       	break;
 
         case REVERSE:
 
- 			TA0CCTL0 &= ~(OUTMOD_7);
-          	TA0CCTL1 &= ~(OUTMOD_7);
-          	TA1CCTL0 &= ~(OUTMOD_7);
-          	TA1CCTL1 &= ~(OUTMOD_7);
-
+			TA0CCTL0 &= ~(OUTMOD_7);
         	TA0CCTL0 |= OUTMOD_5;
+        	TA0CCTL1 &= ~(OUTMOD_7);
         	TA0CCTL1 |= OUTMOD_4;
+
+        	TA1CCTL0 &= ~(OUTMOD_7);
         	TA1CCTL0 |= OUTMOD_5;
+        	TA1CCTL1 &= ~(OUTMOD_7);
         	TA1CCTL1 |= OUTMOD_4;
+
+        	__delay_cycles(1000000);
 
 
 		break;
 
         case FORWARD:
- 			TA0CCTL0 &= ~(OUTMOD_7);
-          	TA0CCTL1 &= ~(OUTMOD_7);
-          	TA1CCTL0 &= ~(OUTMOD_7);
-          	TA1CCTL1 &= ~(OUTMOD_7);
 
+			TA0CCTL0 &= ~(OUTMOD_7);
         	TA0CCTL0 |= OUTMOD_7;
-        	TA0CCTL1 |= OUTMOD_5;;
+        	TA0CCTL1 &= ~(OUTMOD_7);
+        	TA0CCTL1 |= OUTMOD_5;
+
+        	TA1CCTL0 &= ~(OUTMOD_7);
         	TA1CCTL0 |= OUTMOD_7;
+        	TA1CCTL1 &= ~(OUTMOD_7);
         	TA1CCTL1 |= OUTMOD_5;
+
+        	__delay_cycles(500000);
 
 		break;
 
         }
+
 }
 
+void Stop(){
+	__delay_cycles(500000);
+	TA0CCTL0 &= ~OUTMOD_7;
+	TA0CCTL1 &= ~OUTMOD_7;
+	TA1CCTL0 &= ~OUTMOD_7;
+	TA1CCTL1 &= ~OUTMOD_7;
+
+	TA0CCTL0 |= OUTMOD_5;
+	TA0CCTL1 |= OUTMOD_5;
+	TA1CCTL0 |= OUTMOD_5;
+	TA1CCTL1 |= OUTMOD_5;
+	__delay_cycles(500000);
+
+}
 
 

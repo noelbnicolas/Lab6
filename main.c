@@ -10,19 +10,26 @@ int main(void) {
 	initTimer();
 
 	  while (1) {
-//		  RobotMovement(FORWARD);
-//		  __delay_cycles(1000000);
-//		  RobotMovement(REVERSE);
-//		  __delay_cycles(1000000);
-//		  RobotMovement(LEFT);
-//		  __delay_cycles(10000);
-//		  RobotMovement(SHARPLEFT);
-//		  RobotMovement(RIGHT);
-//		  __delay_cycles(10000);
-//		  RobotMovement(LEFT);
-//		  __delay_cycles(100000);
+		  RobotMovement(FORWARD);
+		  Stop();
+		  RobotMovement(REVERSE);
+		  Stop();
+		  RobotMovement(LEFT);
+		  Stop();
+		  RobotMovement(FORWARD);
+		  Stop();
+		  RobotMovement(SHARPLEFT);
+		  Stop();
+		  RobotMovement(FORWARD);
+		  Stop();
 		  RobotMovement(RIGHT);
-		  __delay_cycles(100000);
-//		  RobotMovement(SHARPRIGHT);
+		  Stop();
+		  RobotMovement(FORWARD);
+		  Stop();
+		  RobotMovement(SHARPRIGHT);
+		  Stop();
+		  RobotMovement(FORWARD);
+		  Stop();
 	      }
+
 }

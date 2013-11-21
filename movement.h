@@ -18,5 +18,6 @@
 
 void initTimer();
 void RobotMovement(unsigned char direction);
+void Stop();
 
 #endif /* MOVEMENT_H_ */
