@@ -36,10 +36,10 @@ void initTimer(){
 	TA1CTL |= TASSEL1;           // configure for SMCLK
 
 	TA0CCR0 = 100;				// set signal period to 100 clock cycles (~100 microseconds)
-	TA0CCR1 = 60;				// set duty cycle to 75/100 (75%)
+	TA0CCR1 = 60;				// set duty cycle to 60/100 (60%)
 
 	TA1CCR0 = 100;				// set signal period to 100 clock cycles (~100 microseconds)
-	TA1CCR1 = 60;				// set duty cycle to 75/100 (75%)
+	TA1CCR1 = 60;				// set duty cycle to 60/100 (60%)
 
 
 	TA0CCTL0 |= OUTMOD_5;
@@ -58,136 +58,98 @@ void RobotMovement(unsigned char direction)
 {
         switch (direction) {
         case LEFT:
-         	TA1CCR1 = 0;
- 			TA0CCR1 = 0;
- 			__delay_cycles(10000);
 
- 			TA0CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
-         	TA0CCTL0 |= OUTMOD_5;
-         	TA0CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
+ 			TA0CCTL0 &= ~(OUTMOD_7);
+          	TA0CCTL1 &= ~(OUTMOD_7);
+          	TA1CCTL0 &= ~(OUTMOD_7);
+          	TA1CCTL1 &= ~(OUTMOD_7);
+
+
+ 		   	TA0CCTL0 |= OUTMOD_5;
          	TA0CCTL1 |= OUTMOD_7;        // set TACCTL1 to Reset / Set mode
-
-         	TA1CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
          	TA1CCTL0 |= OUTMOD_7;
-         	TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
          	TA1CCTL1 |= OUTMOD_5;
-
-         	TA0CCR1 = 30;
-         	TA1CCR1 = 30;
-         	__delay_cycles(5000);
 
 		 break;
 
-         case SHARPLEFT:
-         	TA1CCR1 = 0;
- 			TA0CCR1 = 0;
- 			__delay_cycles(10000);
-
- 			TA0CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
-         	TA0CCTL0 |= OUTMOD_5;
-         	TA0CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-         	TA0CCTL1 |= OUTMOD_7;
-
-         	TA1CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
-         	TA1CCTL0 |= OUTMOD_7;
-         	TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-         	TA1CCTL1 |= OUTMOD_5;
-
-         	TA0CCR1 = 50;
-         	TA1CCR1 = 50;
-         	__delay_cycles(10000);
-
-       	 break;
+//         case SHARPLEFT:
+//
+//
+// 			TA0CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+//         	TA0CCTL0 |= OUTMOD_5;
+//         	TA0CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+//         	TA0CCTL1 |= OUTMOD_7;
+//
+//         	TA1CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+//         	TA1CCTL0 |= OUTMOD_7;
+//         	TA1CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+//         	TA1CCTL1 |= OUTMOD_5;
+//
+//
+//       	 break;
 
          case RIGHT:
 
-         	TA1CCR1 = 0;
- 			TA0CCR1 = 0;
- 			__delay_cycles(10000);
+ 			TA0CCTL0 &= ~(OUTMOD_7);
+          	TA0CCTL1 &= ~(OUTMOD_7);
+          	TA1CCTL0 &= ~(OUTMOD_7);
+          	TA1CCTL1 &= ~(OUTMOD_7);
 
-
- 			TA0CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
           	TA0CCTL0 |= OUTMOD_7;
-          	TA0CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
           	TA0CCTL1 |= OUTMOD_5;
+          	TA1CCTL0 |= OUTMOD_7;
+          	TA1CCTL1 |= OUTMOD_5;
 
-          	TA1CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
-          	TA1CCTL0 |= OUTMOD_5;
-          	TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-          	TA1CCTL1 |= OUTMOD_7;
 
-          	TA0CCR1 = 30;
-          	TA1CCR1 = 30;
-          	__delay_cycles(50000);
+
 
 		break;
-        case SHARPRIGHT:
-         	TA1CCR1 = 0;
- 			TA0CCR1 = 0;
 
-			__delay_cycles(10000);
-
-
-			TA0CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
-         	TA0CCTL0 |= OUTMOD_7;
-         	TA0CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-         	TA0CCTL1 |= OUTMOD_5;
-
-         	TA1CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
-         	TA1CCTL0 |= OUTMOD_5;
-         	TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-         	TA1CCTL1 |= OUTMOD_7;
-
-         	TA0CCR1 = 50;
-         	TA1CCR1 = 50;
-         	__delay_cycles(1000000);
-
-       	break;
+//        case SHARPRIGHT:
+//
+//			TA0CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+//         	TA0CCTL0 |= OUTMOD_7;
+//         	TA0CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+//         	TA0CCTL1 |= OUTMOD_5;
+//
+//         	TA1CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+//         	TA1CCTL0 |= OUTMOD_5;
+//         	TA1CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+//         	TA1CCTL1 |= OUTMOD_7;
+//
+//
+//
+//       	break;
 
         case REVERSE:
-         	TA1CCR1 = 0;
- 			TA0CCR1 = 0;
 
-         	__delay_cycles(1000000);
+ 			TA0CCTL0 &= ~(OUTMOD_7);
+          	TA0CCTL1 &= ~(OUTMOD_7);
+          	TA1CCTL0 &= ~(OUTMOD_7);
+          	TA1CCTL1 &= ~(OUTMOD_7);
 
-			TA0CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
         	TA0CCTL0 |= OUTMOD_5;
-        	TA0CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
         	TA0CCTL1 |= OUTMOD_4;
-
-        	TA1CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
         	TA1CCTL0 |= OUTMOD_5;
-        	TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
         	TA1CCTL1 |= OUTMOD_4;
-
-        	TA1CCR1 = 50;
-        	TA0CCR1 = 50;
-        	__delay_cycles(1000000);
 
 
 		break;
 
         case FORWARD:
-         	TA1CCR1 = 0;
- 			TA0CCR1 = 0;
+ 			TA0CCTL0 &= ~(OUTMOD_7);
+          	TA0CCTL1 &= ~(OUTMOD_7);
+          	TA1CCTL0 &= ~(OUTMOD_7);
+          	TA1CCTL1 &= ~(OUTMOD_7);
 
-         	__delay_cycles(1000000);
-
-			TA0CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
         	TA0CCTL0 |= OUTMOD_7;
-        	TA0CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
-        	TA0CCTL1 |= OUTMOD_5;
-
-        	TA1CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+        	TA0CCTL1 |= OUTMOD_5;;
         	TA1CCTL0 |= OUTMOD_7;
-        	TA1CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
         	TA1CCTL1 |= OUTMOD_5;
 
-        	__delay_cycles(1000000);
 		break;
 
         }
-
 }
 
 
