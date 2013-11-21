@@ -11,7 +11,7 @@
 
 //P2.1 red right, P2.0 black right, P1.2 red left, P1.1 black left
 
-void initTimerA(){
+void initTimer(){
 
 	WDTCTL = WDTPW|WDTHOLD;
 	P1DIR |= BIT2;                // TA0CCR1 on P1.2
@@ -54,41 +54,10 @@ void initTimerA(){
 
 // Mod 7 is 75% Mod 4 is 37.5 Mod 5 is reset
 
-//void moveLeft(){
-//
-//TACCTL1 &= ~(OUTMOD2|OUTMOD1|OUTMOD0);
-//TACCTL1 |= OUTMOD_7;
-//TACCTL0 &= ~(OUTMOD2|OUTMOD1|OUTMOD0);
-//TACCTL0 |= OUTMOD_5;
-//
-//}
-
 void RobotMovement(unsigned char direction)
 {
         switch (direction) {
-        case RIGHT:
-        	TA1CCR1 = 0;
-			TA0CCR1 = 0;
-			__delay_cycles(10000);
-
-
-			TA0CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
-        	TA0CCTL0 |= OUTMOD_5;
-        	TA0CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-        	TA0CCTL1 |= OUTMOD_7;        // set TACCTL1 to Reset / Set mode
-
-        	TA1CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
-        	TA1CCTL0 |= OUTMOD_5;
-        	TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-        	TA1CCTL1 |= OUTMOD_7;
-
-        	TA1CCR1 = 0;
-        	TA0CCR1 = 70;
-        	__delay_cycles(5000);
-
-		 break;
-
-         case SHARPRIGHT:
+        case LEFT:
          	TA1CCR1 = 0;
  			TA0CCR1 = 0;
  			__delay_cycles(10000);
@@ -103,13 +72,35 @@ void RobotMovement(unsigned char direction)
          	TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
          	TA1CCTL1 |= OUTMOD_5;
 
-         	TA0CCR1 = 60;
-         	TA1CCR1 = 60;
+         	TA0CCR1 = 30;
+         	TA1CCR1 = 30;
+         	__delay_cycles(5000);
+
+		 break;
+
+         case SHARPLEFT:
+         	TA1CCR1 = 0;
+ 			TA0CCR1 = 0;
+ 			__delay_cycles(10000);
+
+ 			TA0CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
+         	TA0CCTL0 |= OUTMOD_5;
+         	TA0CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
+         	TA0CCTL1 |= OUTMOD_7;
+
+         	TA1CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
+         	TA1CCTL0 |= OUTMOD_7;
+         	TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
+         	TA1CCTL1 |= OUTMOD_5;
+
+         	TA0CCR1 = 50;
+         	TA1CCR1 = 50;
          	__delay_cycles(10000);
 
        	 break;
 
-         case LEFT:
+         case RIGHT:
+
          	TA1CCR1 = 0;
  			TA0CCR1 = 0;
  			__delay_cycles(10000);
@@ -118,86 +109,81 @@ void RobotMovement(unsigned char direction)
  			TA0CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
           	TA0CCTL0 |= OUTMOD_7;
           	TA0CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-          	TA0CCTL1 |= OUTMOD_5;        // set TACCTL1 to Reset / Set mode
+          	TA0CCTL1 |= OUTMOD_5;
 
           	TA1CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
           	TA1CCTL0 |= OUTMOD_5;
           	TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
           	TA1CCTL1 |= OUTMOD_7;
 
-          	TA0CCR1 = 60;
-          	TA1CCR1 = 60;
+          	TA0CCR1 = 30;
+          	TA1CCR1 = 30;
           	__delay_cycles(50000);
 
 		break;
-        case SHARPLEFT:
-        	TA1CCR1 = 0;
-			TA0CCR1 = 0;
+        case SHARPRIGHT:
+         	TA1CCR1 = 0;
+ 			TA0CCR1 = 0;
+
 			__delay_cycles(10000);
 
 
 			TA0CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
          	TA0CCTL0 |= OUTMOD_7;
          	TA0CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-         	TA0CCTL1 |= OUTMOD_5;        // set TACCTL1 to Reset / Set mode
+         	TA0CCTL1 |= OUTMOD_5;
 
          	TA1CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
          	TA1CCTL0 |= OUTMOD_5;
          	TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
          	TA1CCTL1 |= OUTMOD_7;
 
-         	TA0CCR1 = 60;
-         	TA1CCR1 = 60;
+         	TA0CCR1 = 50;
+         	TA1CCR1 = 50;
          	__delay_cycles(1000000);
 
        	break;
 
         case REVERSE:
+         	TA1CCR1 = 0;
+ 			TA0CCR1 = 0;
+
+         	__delay_cycles(1000000);
+
 			TA0CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
         	TA0CCTL0 |= OUTMOD_5;
         	TA0CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-        	TA0CCTL1 |= OUTMOD_7;        // set TACCTL1 to Reset / Set mode
+        	TA0CCTL1 |= OUTMOD_4;
 
         	TA1CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
         	TA1CCTL0 |= OUTMOD_5;
         	TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-        	TA1CCTL1 |= OUTMOD_7;
-        	TA1CCR1 = 0;
-			TA0CCR1 = 0;
-			__delay_cycles(10000);
+        	TA1CCTL1 |= OUTMOD_4;
 
-
-
-        	TA1CCR1 = 60;
-        	TA0CCR1 = 60;
+        	TA1CCR1 = 50;
+        	TA0CCR1 = 50;
         	__delay_cycles(1000000);
+
 
 		break;
 
         case FORWARD:
-        	TA1CCR1 = 0;
-			TA0CCR1 = 0;
-			__delay_cycles(10000);
+         	TA1CCR1 = 0;
+ 			TA0CCR1 = 0;
 
-    		TA0CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
-			TA0CCTL0 |= OUTMOD_7;
-			TA0CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-			TA0CCTL1 |= OUTMOD_5;
+         	__delay_cycles(1000000);
 
-			TA1CCTL0 &= ~(OUTMOD_5|OUTMOD_7);
-			TA1CCTL0 |= OUTMOD_7;
-			TA1CCTL1 &= ~(OUTMOD_5|OUTMOD_7);
-			TA1CCTL1 |= OUTMOD_5;
-        	TA1CCR1 = 0;
-			TA0CCR1 = 0;
-			__delay_cycles(10000);
+			TA0CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+        	TA0CCTL0 |= OUTMOD_7;
+        	TA0CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+        	TA0CCTL1 |= OUTMOD_5;
 
+        	TA1CCTL0 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+        	TA1CCTL0 |= OUTMOD_7;
+        	TA1CCTL1 &= ~(OUTMOD_4|OUTMOD_5|OUTMOD_7);
+        	TA1CCTL1 |= OUTMOD_5;
 
-
-        	TA1CCR1 = 50;
-        	TA0CCR1 = 50;
-        	__delay_cycles(100000000);
-
+        	__delay_cycles(1000000);
 		break;
 
         }

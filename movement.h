@@ -16,7 +16,7 @@
 
 
 
-void initTimerA();
+void initTimer();
 void RobotMovement(unsigned char direction);
 
 #endif /* MOVEMENT_H_ */

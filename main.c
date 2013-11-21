@@ -7,15 +7,15 @@
 
 
 int main(void) {
-	initTimerA();
+	initTimer();
 
 	  while (1) {
 		  RobotMovement(FORWARD); //goes forward
-//		  RobotMovement(REVERSE); //goes left
-//		  RobotMovement(LEFT); //goes left
-//		  RobotMovement(SHARPLEFT); //goes sharp left
-//		  RobotMovement(RIGHT); //goes left
-//		  RobotMovement(SHARPRIGHT); //goes right
+		  RobotMovement(REVERSE); //goes left
+		  RobotMovement(LEFT); //goes left
+		  RobotMovement(SHARPLEFT); //goes sharp left
+		  RobotMovement(RIGHT); //goes left
+		  RobotMovement(SHARPRIGHT); //goes right
 	      }
 
 }
