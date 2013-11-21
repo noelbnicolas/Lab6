@@ -51,7 +51,7 @@ void initTimer(){
 	TA1CTL |= MC0;                // count up
 }
 
-void moveLeftMotorForward()
+void moveRightMotorForward()
 {
 	TA0CCTL0 &= ~(OUTMOD_7);
  	TA0CCTL0 |= OUTMOD_5;
@@ -60,7 +60,7 @@ void moveLeftMotorForward()
  	TA0CCTL1 |= OUTMOD_4;        // set TACCTL1 to Reset / Set mode
 }
 
-void moveLeftMotorBackward()
+void moveRightMotorBackward()
 { 	TA0CCTL1 &= ~(OUTMOD_7);
 	TA0CCTL1 |= OUTMOD_5;        // set TACCTL1 to Reset / Set mode
  	_delay_cycles(10000);
@@ -68,7 +68,7 @@ void moveLeftMotorBackward()
  	TA0CCTL0 |= OUTMOD_4;
 }
 
-void moveRightMotorForward()
+void moveLeftMotorForward()
 {
 	TA1CCTL0 &= ~(OUTMOD_7);
  	TA1CCTL0 |= OUTMOD_5;
@@ -77,7 +77,7 @@ void moveRightMotorForward()
  	TA1CCTL1 |= OUTMOD_4;        // set TACCTL1 to Reset / Set mode
 }
 
-void moveRightMotorBackward()
+void moveLeftMotorBackward()
 { 	TA1CCTL1 &= ~(OUTMOD_7);
 	TA1CCTL1 |= OUTMOD_5;        // set TACCTL1 to Reset / Set mode
  	_delay_cycles(10000);
